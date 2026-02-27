@@ -1787,6 +1787,57 @@ img {
   line-height: 1.9;
 }
 
+/* ============================================================
+   Admin – Slots Manager
+   ============================================================ */
+.slots-manager { display: flex; flex-direction: column; gap: 20px; }
+
+.slots-manager__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.slots-manager__month {
+  font-size: 18px;
+  font-weight: 300;
+  color: var(--text-primary);
+  flex: 1;
+  text-align: center;
+}
+
+.slots-manager__add-btn { margin-left: auto; }
+
+/* Slot Create Form */
+.slots-form {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.15s var(--ease-out);
+}
+
+.slots-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .slots-form__row { grid-template-columns: 1fr; }
+}
+
+/* Slot Table */
+.slots-table__date { white-space: nowrap; }
+.slots-table__time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.slots-table__actions { display: flex; gap: 12px; }
+.slots-table__delete { color: #e05252 !important; }
+.slots-table__delete:hover { color: #ff6060 !important; }
+
+
 
 
 
