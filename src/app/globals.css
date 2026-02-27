@@ -1409,5 +1409,134 @@ img {
 .inquiry-done__title { font-size: 24px; font-weight: 300; color: var(--text-primary); }
 .inquiry-done__msg { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
 
+/* ============================================================
+   Admin – Work Form
+   ============================================================ */
+.work-form { display: flex; flex-direction: column; gap: 32px; max-width: 760px; }
+.work-form__hint { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.work-form__fields { display: flex; flex-direction: column; gap: 20px; }
+.work-form__tag-groups { display: flex; flex-direction: column; gap: 20px; }
+.work-form__tag-group { display: flex; flex-direction: column; gap: 8px; }
+.work-form__actions { display: flex; gap: 12px; padding-top: 8px; }
+.work-form__note { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+
+/* Upload Area */
+.work-upload-area {
+  border: 1px dashed var(--border);
+  border-radius: 4px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease-out), background var(--dur) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.work-upload-area:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.02); }
+.work-upload-area__icon { font-size: 28px; color: var(--text-secondary); }
+.work-upload-area__text { font-size: 14px; color: var(--text-secondary); }
+.work-upload-area__note { font-size: 12px; color: var(--text-secondary); opacity: 0.6; }
+
+/* Image Preview Grid */
+.work-image-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.work-image-preview {
+  position: relative;
+}
+
+.work-image-preview__img-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--bg-light);
+}
+
+.work-image-preview__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.work-image-preview__overlay--error { background: rgba(224,82,82,0.5); }
+
+.work-image-preview__spinner {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.work-image-preview__cover-badge {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-size: 10px;
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
+.work-image-preview__remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background: rgba(0,0,0,0.7);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 50%;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background var(--dur) var(--ease-out);
+}
+
+.work-image-preview__remove:hover { background: rgba(224,82,82,0.8); }
+
+/* Tag Chips */
+.tag-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tag-chip {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease-out), color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  min-height: 34px;
+}
+
+.tag-chip:hover { border-color: rgba(255,255,255,0.3); color: var(--text-primary); }
+.tag-chip--active { background: rgba(122,30,30,0.2); border-color: var(--accent); color: var(--text-primary); }
+
+
 
 
