@@ -1987,3 +1987,347 @@ img {
 
 .work-carousel__thumb:hover { border-color: rgba(255,255,255,0.3); }
 .work-carousel__thumb--active { border-color: var(--accent); }
+
+/* ============================================================
+   Static Page（privacy・pricing・safety・artist・faq 共通）
+   ============================================================ */
+.static-page { min-height: 100vh; padding-bottom: 80px; }
+
+.static-page__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.static-page__header {
+  padding: 80px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+}
+
+.static-page__title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.static-page__date { font-size: 13px; color: var(--text-secondary); }
+.static-page__lead { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
+.static-page__text { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
+
+.static-page__section {
+  margin-top: 48px;
+}
+
+.static-page__section h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.static-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.static-page__body section { display: flex; flex-direction: column; gap: 12px; }
+.static-page__body h2 { font-size: 16px; font-weight: 500; color: var(--text-primary); }
+.static-page__body p { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+.static-page__body ul { padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.static-page__body li { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.static-page__body a { color: var(--accent); }
+
+.static-page__cta {
+  margin-top: 64px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.static-page__cta p { font-size: 15px; color: var(--text-secondary); }
+
+.static-list { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
+.static-list li { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+/* ============================================================
+   404
+   ============================================================ */
+.not-found-page { min-height: 70vh; display: flex; align-items: center; justify-content: center; }
+.not-found__inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: var(--gutter); }
+.not-found__code { font-size: clamp(64px, 15vw, 120px); font-weight: 200; color: var(--accent); opacity: 0.4; line-height: 1; }
+.not-found__title { font-size: 24px; font-weight: 300; color: var(--text-primary); }
+.not-found__msg { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+.not-found__links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+
+/* ============================================================
+   Pricing
+   ============================================================ */
+.pricing-table-wrap { margin-top: 32px; }
+.pricing-table__size { font-weight: 500; color: var(--text-primary); }
+.pricing-table__price { font-weight: 600; color: var(--text-primary); }
+.pricing-note { font-size: 12px; color: var(--text-secondary); margin-top: 12px; }
+
+.pricing-faq { display: flex; flex-direction: column; gap: 0; }
+.pricing-faq__item { padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.pricing-faq__q { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+.pricing-faq__a { font-size: 13px; color: var(--text-secondary); line-height: 1.8; padding-left: 16px; }
+
+/* ============================================================
+   Safety
+   ============================================================ */
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.safety-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.safety-card__icon { font-size: 28px; }
+.safety-card__title { font-size: 15px; font-weight: 500; color: var(--text-primary); }
+.safety-card__desc { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+
+/* ============================================================
+   Artist
+   ============================================================ */
+.artist-profile {
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  align-items: flex-start;
+}
+
+@media (max-width: 600px) { .artist-profile { flex-direction: column; } }
+
+.artist-profile__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+}
+
+.artist-profile__avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.artist-profile__content { display: flex; flex-direction: column; gap: 12px; }
+.artist-profile__name { font-size: 20px; font-weight: 400; color: var(--text-primary); }
+.artist-profile__bio { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
+
+.artist-specs { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-top: 16px; }
+.artist-specs__row { display: flex; font-size: 14px; border-bottom: 1px solid var(--border); }
+.artist-specs__row:last-child { border-bottom: none; }
+.artist-specs__row dt { min-width: 120px; padding: 12px 16px; background: var(--bg-light); color: var(--text-secondary); }
+.artist-specs__row dd { padding: 12px 16px; color: var(--text-primary); }
+
+.artist-timeline { list-style: none; display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
+.artist-timeline__item { display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.artist-timeline__period { font-size: 12px; color: var(--text-secondary); min-width: 110px; padding-top: 2px; }
+.artist-timeline__studio { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+.artist-timeline__note { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+
+.artist-sns { display: flex; gap: 12px; margin-top: 16px; }
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item__q {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.faq-item__a {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  padding-left: 30px;
+}
+
+.faq-item__q-mark {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  background: rgba(122,30,30,0.1);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.faq-item__a-mark {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(255,255,255,0.06);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ============================================================
+   Styles Page（ジャンル一覧）
+   ============================================================ */
+.styles-page { min-height: 100vh; padding-bottom: 80px; }
+
+.styles-page__header {
+  padding: 80px var(--gutter) 48px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.styles-page__title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.styles-page__lead { font-size: 15px; color: var(--text-secondary); line-height: 1.9; }
+
+.styles-grid {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.styles-card {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+}
+
+.styles-card:hover { border-color: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+.styles-card__img-wrap { aspect-ratio: 4/3; overflow: hidden; background: var(--bg); }
+.styles-card__img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s var(--ease-out); }
+.styles-card:hover .styles-card__img { transform: scale(1.03); }
+
+.styles-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 200;
+  color: var(--text-secondary);
+  opacity: 0.3;
+}
+
+.styles-card__body { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.styles-card__name { font-size: 16px; font-weight: 400; color: var(--text-primary); }
+.styles-card__desc { font-size: 12px; color: var(--text-secondary); line-height: 1.7; flex: 1; }
+.styles-card__link { font-size: 12px; color: var(--accent); margin-top: 8px; }
+
+.styles-empty { text-align: center; color: var(--text-secondary); padding: 48px; font-size: 14px; }
+
+.styles-page__cta {
+  max-width: 760px;
+  margin: 48px auto 0;
+  padding: 40px var(--gutter);
+  text-align: center;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.styles-page__cta p { font-size: 15px; color: var(--text-secondary); }
+
+/* ============================================================
+   Style Detail Page（ジャンル詳細）
+   ============================================================ */
+.style-detail-page { min-height: 100vh; padding-bottom: 80px; }
+
+.style-detail-header {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 24px var(--gutter) 64px;
+}
+
+.style-detail-header__title {
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 200;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.style-detail-header__desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  max-width: 600px;
+}
+
+.style-detail-works { max-width: var(--content-max); margin: 0 auto; padding: 0 var(--gutter) 64px; }
+.style-detail-works__empty { text-align: center; color: var(--text-secondary); padding: 48px; font-size: 14px; }
+.style-detail-works__more { text-align: center; margin-top: 32px; }
+.style-detail-works__grid { margin-top: 24px; }
+
+.style-detail-faq { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter) 48px; }

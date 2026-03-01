@@ -9,6 +9,22 @@ export const metadata: Metadata = {
   },
   description:
     '完全予約制のタトゥースタジオ INK ADDICTION。和彫・洋彫・アニメ・ファインラインなど多彩なジャンルに対応。衛生管理徹底、まずは無料相談から。',
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+    siteName: 'INK ADDICTION',
+    title: 'INK ADDICTION | タトゥースタジオ',
+    description: '完全予約制のタトゥースタジオ INK ADDICTION。和彫・洋彫・アニメ・ファインラインなど多彩なジャンルに対応。',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'INK ADDICTION | タトゥースタジオ',
+    description: '完全予約制のタトゥースタジオ INK ADDICTION。和彫・洋彫・アニメ・ファインラインなど多彩なジャンルに対応。',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({
