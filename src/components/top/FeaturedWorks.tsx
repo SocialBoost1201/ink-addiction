@@ -4,20 +4,33 @@ import { createClient } from '@/lib/supabase/server'
 import type { Work } from '@/types/work'
 
 async function getFeaturedWorks(): Promise<Work[]> {
-  const supabase = await createClient()
-  const { data } = await supabase
-    .from('works')
-    .select(`
-      id, title, final_genre_slug, tags, created_at,
-      work_images ( id, path, width, height, blurhash, sort_order ),
-      genres:final_genre_slug ( slug, name )
-    `)
-    .eq('is_published', true)
-    .eq('is_deleted', false)
-    .order('created_at', { ascending: false })
-    .limit(6)
+  try {
+    const supabase = await createClient()
+    const { data, error } = await supabase
+      .from('works')
+      .select(`
+        id, title, final_genre_slug, tags, created_at,
+        work_images ( id, path, width, height, blurhash, sort_order ),
+        genres:final_genre_slug ( slug, name )
+      `)
+      .eq('is_published', true)
+      .eq('is_deleted', false)
+      .order('created_at', { ascending: false })
+      .limit(6)
 
-  return (data as unknown as Work[]) ?? []
+    if (error) {
+      console.error('FeaturedWorks fetch error:', error)
+      return []
+    }
+
+    return (data as unknown as Work[]) ?? []
+  } catch (err: any) {
+    if (err?.digest?.includes('DYNAMIC_SERVER_USAGE') || err?.message?.includes('Dynamic server usage')) {
+      throw err;
+    }
+    console.error('FeaturedWorks fetch failed:', err)
+    return []
+  }
 }
 
 function getPublicUrl(path: string): string {
