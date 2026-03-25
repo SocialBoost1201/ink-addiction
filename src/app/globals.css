@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;700&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
 
 /* ============================================================
    Design Tokens – INK ADDICTION (Doc-06)
@@ -10,9 +14,9 @@
   --bg-light: #161616;
   --text-primary: #f5f5f5;
   --text-secondary: #888888;
-  --accent: #7a1e1e;
+  --accent: oklch(0.97 0 0);
   --accent-hover: #8f2424;
-  --border: rgba(255, 255, 255, 0.1);
+  --border: oklch(0.922 0 0);
 
   /* Typography */
   --font-sans: "Inter", "Noto Sans JP", sans-serif;
@@ -27,6 +31,38 @@
   /* Motion */
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --dur: 0.25s;
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 /* ============================================================
@@ -227,7 +263,7 @@ img {
 }
 
 .work-card__genre {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent);
@@ -309,7 +345,8 @@ img {
   left: 0;
   right: 0;
   z-index: 100;
-  height: 64px;
+  height: calc(64px + var(--safe-area-inset-top));
+  padding-top: var(--safe-area-inset-top);
   background: rgba(15, 15, 15, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -510,7 +547,7 @@ img {
 }
 
 .hero__scroll-label {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-secondary);
@@ -531,7 +568,7 @@ img {
 .section-header { margin-bottom: 48px; }
 
 .section-eyebrow {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--accent);
@@ -606,7 +643,7 @@ img {
   position: absolute;
   bottom: 12px;
   left: 12px;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.7);
@@ -804,7 +841,10 @@ img {
   letter-spacing: 0.04em;
 }
 
-#main-content { padding-top: 64px; }
+#main-content {
+  padding-top: calc(64px + var(--safe-area-inset-top));
+  padding-bottom: max(0px, var(--safe-area-inset-bottom));
+}
 
 /* ============================================================
    Admin – Login
@@ -895,7 +935,7 @@ img {
 }
 
 .admin-sidebar__badge {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1090,7 +1130,7 @@ img {
   align-items: center;
   padding: 3px 8px;
   border-radius: 9999px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -1246,7 +1286,7 @@ img {
   position: absolute;
   left: 0;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .inquiry-form-container {
@@ -1272,7 +1312,7 @@ img {
 }
 
 .inquiry-legend {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1488,7 +1528,7 @@ img {
   position: absolute;
   top: 6px;
   left: 6px;
-  font-size: 10px;
+  font-size: 12px;
   background: var(--accent);
   color: #fff;
   padding: 2px 6px;
@@ -1507,7 +1547,7 @@ img {
   color: var(--text-primary);
   border: none;
   border-radius: 50%;
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -1670,7 +1710,7 @@ img {
 .slot-weekday {
   text-align: center;
   padding: 8px 0;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   letter-spacing: 0.06em;
 }
@@ -1837,12 +1877,6 @@ img {
 .slots-table__delete { color: #e05252 !important; }
 .slots-table__delete:hover { color: #ff6060 !important; }
 
-
-
-
-
-
-
 /* ============================================================
    Work Detail Page
    ============================================================ */
@@ -1882,7 +1916,7 @@ img {
 .work-detail__info { display: flex; flex-direction: column; gap: 16px; }
 
 .work-detail__genre {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
@@ -2134,7 +2168,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
 }
@@ -2331,3 +2365,112 @@ img {
 .style-detail-works__grid { margin-top: 24px; }
 
 .style-detail-faq { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter) 48px; }
+
+/* UIUX-Guard: mobile tiny text normalization */
+@media (max-width: 767px) {
+  .text-\[9px\],
+  .text-\[10px\],
+  .text-\[11px\] {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+
+  [style*="font-size: 12px"],
+  [style*="font-size: 12px"],
+  [style*="font-size: 12px"],
+  [style*="font-size: 12px"],
+  [style*="font-size: 12px"],
+  [style*="font-size: 12px"] {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

@@ -254,3 +254,71 @@ const Effect = dynamic(() => import("@/components/Effect"), { ssr: false })
 </button>
 ```
 
+
+---
+
+## 10. 2026年最新：AEO・高速配信・セキュリティルール（一括追加）
+
+### Bento Grid 2.0（グリッドUIの2026標準）
+
+```tsx
+// 角丸24px以上・Spatial UI（ガラスモーフィズム）を標準化
+<div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 p-8">
+  {/* コンテンツ */}
+</div>
+```
+
+### AEO（AI回答エンジン最適化）— JSON-LD 必須実装
+
+```tsx
+// 全ページに JSON-LD を実装する共通パターン
+export default function Page() {
+  const jsonLd = { "@context": "https://schema.org", /* スキーマオブジェクト */ }
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    </>
+  )
+}
+// グループA（清蓮）: LocalBusiness + Service + FAQPage + BreadcrumbList
+// グループB（テック）: Organization/SoftwareApplication + FAQPage + Article
+```
+
+### PPR（Partial Prerendering）+ AVIF デフォルト化
+
+```ts
+// next.config.ts
+const config: NextConfig = {
+  experimental: { ppr: true },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000,
+  },
+}
+```
+
+### Cloudflare Turnstile（reCAPTCHA代替・全フォーム必須）
+
+```bash
+npm install @marsidev/react-turnstile
+# .env.local: NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY / CLOUDFLARE_TURNSTILE_SECRET_KEY
+```
+
+```tsx
+"use client"
+import { Turnstile } from "@marsidev/react-turnstile"
+export function TurnstileWidget({ onSuccess }: { onSuccess: (token: string) => void }) {
+  return <Turnstile siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!} onSuccess={onSuccess} options={{ theme: "auto", language: "ja" }} />
+}
+// Server Action: challenges.cloudflare.com/turnstile/v0/siteverify でトークン検証を忘れずに
+```
+
+### Lighthouse パフォーマンス目標
+
+| 指標 | 目標 |
+|------|------|
+| Performance | 90+ |
+| Accessibility | 95+ |
+| SEO | 100 |
+| LCP | < 2.5秒 |
+| CLS | < 0.1 |
