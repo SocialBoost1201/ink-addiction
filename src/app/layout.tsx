@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import { SmoothScroll } from '@/components/providers/SmoothScroll'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: {
@@ -25,38 +23,57 @@ export const metadata: Metadata = {
     title: 'INK ADDICTION | タトゥースタジオ',
     description: '完全予約制のタトゥースタジオ INK ADDICTION。和彫・洋彫・アニメ・ファインラインなど多彩なジャンルに対応。',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
+
+const footerLinks = [
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/styles', label: 'Styles' },
+  { href: '/availability', label: 'Availability' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/inquiry', label: 'Contact' },
+]
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ja" className={cn("font-sans", geist.variable)}>
+    <html lang="ja">
       <body>
+        <SmoothScroll>
+        <div className="noise-overlay" aria-hidden="true" />
         <Header />
         <div id="main-content">
           {children}
         </div>
+
         <footer className="site-footer">
           <div className="site-footer__inner">
-            <p className="site-footer__logo">INK ADDICTION</p>
-            <nav className="site-footer__nav" aria-label="フッターナビ">
-              <a href="/gallery">Gallery</a>
-              <a href="/styles">Styles</a>
-              <a href="/availability">Availability</a>
-              <a href="/pricing">Pricing</a>
-              <a href="/faq">FAQ</a>
-              <a href="/inquiry">Contact</a>
-            </nav>
-            <p className="site-footer__copy">
-              © {new Date().getFullYear()} INK ADDICTION. All rights reserved.
-            </p>
+            <div className="site-footer__top">
+              <div className="site-footer__brand">
+                <Link href="/" className="site-footer__logo">INK ADDICTION</Link>
+                <p className="site-footer__tagline">完全予約制タトゥースタジオ — Tokyo</p>
+              </div>
+              <nav className="site-footer__nav" aria-label="フッターナビ">
+                {footerLinks.map((l) => (
+                  <Link key={l.href} href={l.href}>{l.label}</Link>
+                ))}
+              </nav>
+            </div>
+            <div className="site-footer__rule" aria-hidden="true" />
+            <div className="site-footer__bottom">
+              <p className="site-footer__copy">
+                © {new Date().getFullYear()} INK ADDICTION. All rights reserved.
+              </p>
+              <div className="site-footer__legal">
+                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/safety">衛生管理について</Link>
+              </div>
+            </div>
           </div>
         </footer>
+        </SmoothScroll>
       </body>
     </html>
   )

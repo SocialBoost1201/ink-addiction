@@ -5,6 +5,7 @@ import { FeaturedWorks } from '@/components/top/FeaturedWorks'
 import { GenreNav } from '@/components/top/GenreNav'
 import { ArtistSection } from '@/components/top/ArtistSection'
 import { CtaSection } from '@/components/top/CtaSection'
+import { RevealSection } from '@/components/ui/RevealSection'
 
 export const metadata: Metadata = {
   title: 'INK ADDICTION | タトゥースタジオ',
@@ -16,14 +17,26 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <Suspense fallback={null}>
-        <FeaturedWorks />
-      </Suspense>
-      <Suspense fallback={null}>
-        <GenreNav />
-      </Suspense>
-      <ArtistSection />
-      <CtaSection />
+
+      <RevealSection delay={0.05}>
+        <Suspense fallback={null}>
+          <FeaturedWorks />
+        </Suspense>
+      </RevealSection>
+
+      <RevealSection delay={0.05}>
+        <Suspense fallback={null}>
+          <GenreNav />
+        </Suspense>
+      </RevealSection>
+
+      <RevealSection delay={0.05}>
+        <ArtistSection />
+      </RevealSection>
+
+      <RevealSection delay={0.05}>
+        <CtaSection />
+      </RevealSection>
     </>
   )
 }
