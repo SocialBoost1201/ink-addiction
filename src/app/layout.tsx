@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
+import { SmoothScroll } from '@/components/providers/SmoothScroll'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
@@ -40,6 +41,8 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
+        <SmoothScroll>
+        <div className="noise-overlay" aria-hidden="true" />
         <Header />
         <div id="main-content">
           {children}
@@ -70,6 +73,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        </SmoothScroll>
       </body>
     </html>
   )
