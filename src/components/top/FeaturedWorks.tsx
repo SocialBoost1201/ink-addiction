@@ -26,7 +26,7 @@ async function getFeaturedWorks(): Promise<Work[]> {
     return (data as unknown as Work[]) ?? []
   } catch (err: any) {
     if (err?.digest?.includes('DYNAMIC_SERVER_USAGE') || err?.message?.includes('Dynamic server usage')) {
-      throw err;
+      throw err
     }
     console.error('FeaturedWorks fetch failed:', err)
     return []
@@ -48,6 +48,7 @@ export async function FeaturedWorks() {
         <p className="section-eyebrow">Recent Works</p>
         <h2 id="featured-heading" className="section-title">最新作品</h2>
       </div>
+
       <div className="featured-grid">
         {works.map((work) => {
           const cover = work.work_images
@@ -63,12 +64,13 @@ export async function FeaturedWorks() {
                     src={imgUrl}
                     alt={work.title}
                     fill
-                    sizes="(max-width: 640px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     style={{ objectFit: 'cover' }}
                   />
                 ) : (
                   <div className="featured-card__placeholder" />
                 )}
+                <div className="featured-card__overlay" aria-hidden="true" />
               </div>
               {work.genres && (
                 <span className="featured-card__genre">{work.genres.name}</span>
@@ -77,9 +79,10 @@ export async function FeaturedWorks() {
           )
         })}
       </div>
+
       <div className="section-footer">
         <Link href="/gallery" className="link-more">
-          すべての作品を見る &rarr;
+          すべての作品を見る →
         </Link>
       </div>
     </section>
