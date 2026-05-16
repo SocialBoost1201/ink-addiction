@@ -1,15 +1,21 @@
 # 清蓮 Note 自動投稿 — n8n セットアップ手順
 
-## 1. 環境変数の設定
+## 1. ワークフロー内の設定ノードを編集
 
-n8n クラウドの **Settings → Environment Variables** に以下を追加：
+インポート後、**「設定 & トピック選択」** ノードを開き、冒頭2行を書き換えてください：
 
-| 変数名 | 値 | 備考 |
-|--------|-----|------|
-| `ANTHROPIC_API_KEY` | `sk-ant-...` | Anthropic Console で発行 |
-| `NOTE_SESSION_TOKEN` | `a714b2fdb7d66bfdb366c60b765fcc65` | Note.com のセッションクッキー値 |
+```js
+const ANTHROPIC_API_KEY = 'sk-ant-ここにAPIキーを貼り付け';  // ← 変更
+const NOTE_SESSION_TOKEN = 'ここにセッショントークンを貼り付け';  // ← 変更
+```
+
+| 項目 | 値 |
+|------|-----|
+| `ANTHROPIC_API_KEY` | Anthropic Console で発行した `sk-ant-...` |
+| `NOTE_SESSION_TOKEN` | Note.com の `_note_session_v5` クッキー値のみ（プレフィックス不要） |
 
 > ⚠️ `NOTE_SESSION_TOKEN` は Note.com にログインし直すたびに更新が必要です。
+> ⚠️ Starter プランでは環境変数機能（Variables）が使えないため、この方式を採用しています。
 
 ## 2. ワークフローのインポート
 

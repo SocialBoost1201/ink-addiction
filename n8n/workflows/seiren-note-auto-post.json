@@ -22,10 +22,10 @@
     },
     {
       "parameters": {
-        "jsCode": "const topics = [\n  {\n    topic: '海洋散骨',\n    description: '大切な方の遺骨を海に還す「海洋散骨」のメリット・費用・手続き・注意点'\n  },\n  {\n    topic: 'お墓じまい',\n    description: 'お墓を閉じて改葬・永代供養に移行する「墓じまい」の流れと費用'\n  },\n  {\n    topic: '粉骨サービス',\n    description: '遺骨を粉末状にする「粉骨」とその後の散骨・手元供養への活用'\n  },\n  {\n    topic: '手元供養',\n    description: '遺骨の一部を自宅で大切に保管する「手元供養」の種類と選び方'\n  },\n  {\n    topic: '樹木葬',\n    description: '木の根元に埋葬する自然葬「樹木葬」の特徴・費用・選ぶ際のポイント'\n  },\n  {\n    topic: '永代供養',\n    description: '寺院・霊園が長期間供養してくれる「永代供養」の種類と費用感'\n  },\n  {\n    topic: '散骨の法律と注意点',\n    description: '日本における散骨（海洋・山・宇宙）の法的位置づけとマナー'\n  },\n  {\n    topic: '終活の始め方',\n    description: '50〜60代から始める終活の具体的なステップと遺骨の準備'\n  }\n];\n\nconst selected = topics[Math.floor(Math.random() * topics.length)];\nreturn [{ json: selected }];"
+        "jsCode": "// =============================================\n// ★ ここだけ編集してください\n// =============================================\nconst ANTHROPIC_API_KEY = 'sk-ant-ここにAPIキーを貼り付け';\nconst NOTE_SESSION_TOKEN = 'ここにセッショントークンを貼り付け';\n// =============================================\n\nconst topics = [\n  {\n    topic: '海洋散骨',\n    description: '大切な方の遺骨を海に還す「海洋散骨」のメリット・費用・手続き・注意点'\n  },\n  {\n    topic: 'お墓じまい',\n    description: 'お墓を閉じて改葬・永代供養に移行する「墓じまい」の流れと費用'\n  },\n  {\n    topic: '粉骨サービス',\n    description: '遺骨を粉末状にする「粉骨」とその後の散骨・手元供養への活用'\n  },\n  {\n    topic: '手元供養',\n    description: '遺骨の一部を自宅で大切に保管する「手元供養」の種類と選び方'\n  },\n  {\n    topic: '樹木葬',\n    description: '木の根元に埋葬する自然葬「樹木葬」の特徴・費用・選ぶ際のポイント'\n  },\n  {\n    topic: '永代供養',\n    description: '寺院・霊園が長期間供養してくれる「永代供養」の種類と費用感'\n  },\n  {\n    topic: '散骨の法律と注意点',\n    description: '日本における散骨（海洋・山・宇宙）の法的位置づけとマナー'\n  },\n  {\n    topic: '終活の始め方',\n    description: '50〜60代から始める終活の具体的なステップと遺骨の準備'\n  }\n];\n\nconst selected = topics[Math.floor(Math.random() * topics.length)];\nreturn [{ json: { ...selected, ANTHROPIC_API_KEY, NOTE_SESSION_TOKEN } }];"
       },
       "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-      "name": "ランダムトピック選択",
+      "name": "設定 & トピック選択",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [420, 300]
@@ -39,7 +39,7 @@
           "parameters": [
             {
               "name": "x-api-key",
-              "value": "={{ $env.ANTHROPIC_API_KEY }}"
+              "value": "={{ $json.ANTHROPIC_API_KEY }}"
             },
             {
               "name": "anthropic-version",
@@ -64,7 +64,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const response = $input.item.json;\nconst rawText = response.content[0].text.trim();\n\nlet parsed;\ntry {\n  // ```json ... ``` で囲まれている場合も対応\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error('JSONが見つかりません');\n  parsed = JSON.parse(jsonMatch[0]);\n} catch (e) {\n  throw new Error('Claude レスポンスのパース失敗: ' + rawText.substring(0, 300));\n}\n\nif (!parsed.title || !parsed.body) {\n  throw new Error('title または body が見つかりません');\n}\n\n// UUID v4 生成\nconst uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c === 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn [{\n  json: {\n    key: uuid,\n    title: parsed.title,\n    body: parsed.body\n  }\n}];"
+        "jsCode": "const response = $input.item.json;\nconst rawText = response.content[0].text.trim();\n\nconst noteSessionToken = $('設定 & トピック選択').item.json.NOTE_SESSION_TOKEN;\n\nlet parsed;\ntry {\n  const jsonMatch = rawText.match(/\\{[\\s\\S]*\\}/);\n  if (!jsonMatch) throw new Error('JSONが見つかりません');\n  parsed = JSON.parse(jsonMatch[0]);\n} catch (e) {\n  throw new Error('Claude レスポンスのパース失敗: ' + rawText.substring(0, 300));\n}\n\nif (!parsed.title || !parsed.body) {\n  throw new Error('title または body が見つかりません');\n}\n\nconst uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n  const r = Math.random() * 16 | 0;\n  const v = c === 'x' ? r : (r & 0x3 | 0x8);\n  return v.toString(16);\n});\n\nreturn [{\n  json: {\n    key: uuid,\n    title: parsed.title,\n    body: parsed.body,\n    noteSessionToken\n  }\n}];"
       },
       "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
       "name": "レスポンス整形",
@@ -85,7 +85,7 @@
             },
             {
               "name": "Cookie",
-              "value": "={{ '_note_session_v5=' + $env.NOTE_SESSION_TOKEN }}"
+              "value": "={{ '_note_session_v5=' + $json.noteSessionToken }}"
             },
             {
               "name": "User-Agent",
@@ -132,14 +132,14 @@
       "main": [
         [
           {
-            "node": "ランダムトピック選択",
+            "node": "設定 & トピック選択",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "ランダムトピック選択": {
+    "設定 & トピック選択": {
       "main": [
         [
           {
